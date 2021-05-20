@@ -1,7 +1,7 @@
 const express = require('express')
 var bodyParser = require('body-parser');
 const app = express()
-const port = 3000
+const port = 3001
 
 const callURL = require('./callURL');
 
@@ -25,6 +25,7 @@ app.get("/list/:url", function (request, response) {
 
 app.post("/list", function (request, response) {
     var url = request.body.url;
+    console.log(url);
     callU.call(url, function(err, cb){
         response.json({url: cb.res})
     });

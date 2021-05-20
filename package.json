@@ -1,0 +1,26 @@
+{
+  "name": "Letterboxd-Random-Picker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marito07/Letterboxd-Random-Picker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marito07/Letterboxd-Random-Picker/issues"
+  },
+  "homepage": "https://github.com/marito07/Letterboxd-Random-Picker#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "cheerio": "^1.0.0-rc.9",
+    "express": "^4.17.1"
+  }
+}

@@ -14,8 +14,6 @@ app.use(express.urlencoded({ extended: true }))
 
 
 app.set('port', (process.env.PORT || 5000));
-app.get('/', (req, res) => res.send('Hello World!'))
-
 
 // Have Node serve the files for our built React app
 app.use(express.static(path.resolve(__dirname, '../client/build')));
@@ -23,12 +21,6 @@ app.use(express.static(path.resolve(__dirname, '../client/build')));
 app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
   });
-
-app.get("/list/:url", function (request, response) {
-    var salida = callU.call('https://letterboxd.com/johncassavetes/list/old-films-for-people-who-want-to-watch-more/');
-    response.statusCode = 200;
-    response.send(salida);
-});
 
 app.post("/list", function (request, response) {
     var url = request.body.url;

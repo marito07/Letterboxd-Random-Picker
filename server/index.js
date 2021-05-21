@@ -26,7 +26,7 @@ app.post("/list", function (request, response) {
     var url = request.body.url;
     console.log(url);
     callU.call(url, function(err, cb){
-        response.json({url: cb.res})
+        response.json(cb.res)
     });
     
 });

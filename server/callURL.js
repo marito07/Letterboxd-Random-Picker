@@ -10,6 +10,25 @@ class callURL {
     constructor() {
         //callUrl('https://letterboxd.com/johncassavetes/list/old-films-for-people-who-want-to-watch-more/');
     }
+
+    getMovie(url, callback){
+        axios.get(url).then((response) => {
+            const $ = cheerio.load(response.data);
+
+            var poster = $('.film-poster img').attr('src');
+            console.log(poster)
+            var year = $('#featured-film-header p .number').text();
+            //var director = $('#featured-film-header p .number').text();
+            var title = $('#featured-film-header h1').text();
+
+            callback(null, {
+                poster: poster,
+                year: year,
+                title: title,
+                url: url
+            });
+        });
+    }
     
     call(answer, callback){
         if (answer == '0') //we need some base case, for recursion
@@ -35,8 +54,8 @@ class callURL {
                         }
                     }
                     // https://letterboxd.com/andreswo/list/movie-night/
-                    Promise.all(promises).then(function (results) {
-                        results.forEach(function (resp2) {
+                    Promise.all(promises).then( (results) => {
+                        results.forEach( (resp2) => {
                             const $2 = cheerio.load(resp2.data);
                             $2('.poster-list li div').each((i, movie)=>{
                                 allFilms.push('https://letterboxd.com' + $(movie).attr('data-film-slug'));
@@ -46,9 +65,11 @@ class callURL {
                         //console.clear();
                         var item = allFilms[Math.floor(Math.random() * allFilms.length)];
                         console.log('Your random movie is: ' + item);
-                        //recursiveAsyncReadLine();
-                        callback(null, {
-                            res: item
+                        this.getMovie(item, function(da, res){
+                            //recursiveAsyncReadLine();
+                            callback(null, {
+                                res: res
+                            });
                         });
                     });
                 });
@@ -62,6 +83,8 @@ class callURL {
                 //recursiveAsyncReadLine(); //Calling this function again to ask new question
             }
     }
+
+
 }
 module.exports = callURL;
 

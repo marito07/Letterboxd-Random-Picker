@@ -26,7 +26,19 @@ app.post("/list", function (request, response) {
     var url = request.body.url;
     console.log(url);
     callU.call(url, function(err, cb){
+        console.log("LE CONSOLE",cb.res)
         response.json(cb.res)
+    });
+    
+});
+
+
+app.post("/getMovie", function (request, response) {
+    var url = request.body.url;
+    console.log(url);
+    callU.getMovie(url, function(err, cb){
+        console.log(cb)
+        response.json(cb)
     });
     
 });

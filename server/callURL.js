@@ -16,16 +16,21 @@ class callURL {
             const $ = cheerio.load(response.data);
 
             var poster = $('.film-poster img').attr('src');
-            console.log(poster)
             var year = $('#featured-film-header p .number').text();
             //var director = $('#featured-film-header p .number').text();
             var title = $('#featured-film-header h1').text();
-
+            var duration = parseInt($('.text-link').text());
+            var genres = []
+            $('#tab-genres div p a').each((i, genre) => {
+                genres.push($(genre).text())
+            });
             callback(null, {
                 poster: poster,
                 year: year,
                 title: title,
-                url: url
+                url: url,
+                genres: genres,
+                duration: duration
             });
         });
     }
@@ -65,12 +70,15 @@ class callURL {
                         //console.clear();
                         var item = allFilms[Math.floor(Math.random() * allFilms.length)];
                         console.log('Your random movie is: ' + item);
-                        this.getMovie(item, function(da, res){
+                        callback(null, {
+                            res: allFilms
+                        });
+                        /*this.getMovie(item, function(da, res){
                             //recursiveAsyncReadLine();
                             callback(null, {
                                 res: res
                             });
-                        });
+                        });*/
                     });
                 });
             }

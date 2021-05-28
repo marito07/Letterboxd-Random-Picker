@@ -21,8 +21,10 @@
   "homepage": "https://github.com/marito07/Letterboxd-Random-Picker#readme",
   "dependencies": {
     "axios": "^0.21.1",
+    "bootstrap": "^4.6.0",
     "cheerio": "^1.0.0-rc.9",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "react-bootstrap": "^1.6.0"
   },
   "engines": {
     "node": "14.17.0"

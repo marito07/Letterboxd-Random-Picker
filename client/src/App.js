@@ -15,6 +15,9 @@ function App() {
     genres: []
   });
 
+  const [urlLink, setUrlLink] = React.useState("");
+  const [movieList, setMovieList] = React.useState([]);
+
   const [checkedDoc, setCheckedDoc] = React.useState(false);
   const [checkedShort, setCheckedShort] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
@@ -105,19 +108,18 @@ function App() {
     <div className="App">
 
       <header className="App-header">
-        <h1>Letterboxd Random List Movie Picker</h1>
+        <h1 class="display-4 mt-3">Letterboxd Random List Movie Picker</h1>
         <form onSubmit={handleSubmit(getRandomMovie)}> 
-          <label class="mr-3" for="fname">List URL:</label>
-          <input disabled={loading} type="text" id="fname" name="fname" {...register("url", {required: "Required"})}></input>
-
-
-
+        <div class="form-group d-flex flex-row align-items-center">
+          <input disabled={loading}  class="form-control" type="text" placeholder="letterboxd list url..." id="fname" name="fname" {...register("url", {required: "Required"})}></input>
           <input disabled={loading} class="ml-2 btn btn-primary" type="submit" value="SEND"></input>
-          <div class="d-flex flex-row align-items-center">
+        </div>
+
+          <div class="d-flex flex-row align-items-center form-check">
             <label class="smol m-0 ml-5 mr-2">Exclude documentaries</label>
             <input disabled={loading} type="checkbox" onClick={handleClickDoc} onChange={handleClickDoc} checked={checkedDoc}></input>
           </div>
-          <div class="d-flex flex-row align-items-center">
+          <div class="d-flex flex-row align-items-center form-check">
             <label class="smol m-0 ml-5 mr-2">Exclude short films</label>
             <input disabled={loading} type="checkbox" onClick={handleClickShort} onChange={handleClickShort} checked={checkedShort}></input>
           </div>
